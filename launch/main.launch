@@ -1,0 +1,8 @@
+
+
+<launch>
+ <include file="$(find openni_launch)/launch/openni.launch" />
+ <include file="$(find ar_tag_tracker)/launch/track.launch" />
+
+</launch>
+
