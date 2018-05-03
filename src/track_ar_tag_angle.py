@@ -12,7 +12,8 @@ class AimingVelocity():
     aims the robot
     '''
     def __init__(self):
-        self.pub = rospy.Publisher("/cmd_vel", Twist)
+        self.pub = rospy.Publisher("/RosAria/cmd_vel", Twist, queue_size=10)
+        self.vel_mag = 0.2
     def send_vel(self, msg):
         '''
         Calculates which velocity should be sent to the base of the robot
@@ -24,10 +25,10 @@ class AimingVelocity():
         y_relative = msg.markers[0].pose.pose.position.y
         twist_msg = Twist()
         if y_relative > 0:
-            twist_msg.angular.z = 0.5
+            twist_msg.angular.z = self.vel_mag
             print "To the left"
         elif y_relative < 0:
-            twist_msg.angular.z = -0.5
+            twist_msg.angular.z = -self.vel_mag
             print "to the right"
         else:
             print "Dead center"
