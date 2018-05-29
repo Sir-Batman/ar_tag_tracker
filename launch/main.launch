@@ -1,8 +1,6 @@
-
-
 <launch>
  <include file="$(find openni_launch)/launch/openni.launch" />
  <include file="$(find ar_tag_tracker)/launch/track.launch" />
-
+ <node name="rosaria" pkg="rosaria" type="RosAria" respawn="true" args="_port:=/dev/pioneer"/>
+ <node name="track_ar_tag_angle" pkg="ar_tag_tracker" type="track_ar_tag_angle.py" />
 </launch>
-
